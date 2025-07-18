@@ -193,14 +193,14 @@ export default function Hero() {
       {/* ✅ Hero Section */}
       <div className="flex flex-col justify-center py-6 px-4 md:py-4">
         <div className="leading-none w-full">
-          <h1 className="xl:text-[12rem] max-md:text-[3.2rem] md:text-[6rem] font-semibold text-white text-left mona-sans-font name hover:text-lime-500 transition">
+          <h1 className="xl:text-[12rem] max-md:text-[2.8rem] md:text-[6rem] font-semibold text-white text-left mona-sans-font name hover:text-lime-500 transition">
             AkashParihar
           </h1>
           <p className="text-white xl:text-6xl max-md:text-2xl  md:text-4xl text-left mona-sans-font water-text hover:text-lime-500 transition">
             WANT TO DISCUSS <br /> A NEW PROJECT?
           </p>
           <a href="#contact">
-            <button className="my-4 text-lime-500 text-2xl rounded-[5rem] font-bold border-2 border-lime-950 p-4 mona-sans-font">
+            <button className="my-4 text-lime-500 text-lg md:text-2xl rounded-[5rem] font-bold border-2 border-lime-950 p-2 md:p-4 mona-sans-font">
               Send me an e-mail
             </button></a>
         </div>
@@ -215,8 +215,8 @@ export default function Hero() {
           </p>
           <div className="xl:flex justify-between w-full text-white p-2 mona-sans-font mt-6 ">
             <div className="flex gap-6">
-              <p className="hover:text-lime-500 transition cursor-pointer">GITHUB</p>
-              <p className="hover:text-lime-500 transition cursor-pointer">LINKEDIN</p>
+              <a href="https://github.com/akashsingh1121"><p className="hover:text-lime-500 transition cursor-pointer">GITHUB</p></a>
+              <a href="https://www.linkedin.com/in/akashparihar0/"><p className="hover:text-lime-500 transition cursor-pointer">LINKEDIN</p></a>
             </div>
             <p>DESIGNED BY CLARISSE MICHARD</p>
           </div>
@@ -302,75 +302,3 @@ poppins-font"
     </div>
   );
 }
-
-//  <footer className="bg-black min-h-screen flex flex-col justify-center px-4 sm:px-6 lg:px-8 py-12" id="contact">
-//         <div className="max-w-4xl mx-auto w-full">
-//           <div className="text-center mb-12">
-//             <h3 className="text-white font-bold tracking-widest text-xl sm:text-2xl">CONTACT</h3>
-//             <h4 className="text-gray-500 font-semibold tracking-widest text-lg sm:text-xl mt-2">
-//               I'd Love To Hear From You.
-//             </h4>
-//             <p className="text-white text-base sm:text-lg mt-8">Feel free to Contact Me:</p>
-//           </div>
-
-//           <form className="space-y-6 mb-12">
-//             <div>
-//               <input
-//                 type="text"
-//                 placeholder="Name"
-//                 className="w-full bg-black text-white placeholder-gray-400 border-b border-gray-600 focus:outline-none focus:border-white py-3 text-lg"
-//               />
-//             </div>
-//             <div>
-//               <input
-//                 type="email"
-//                 placeholder="Email"
-//                 className="w-full bg-black text-white placeholder-gray-400 border-b border-gray-600 focus:outline-none focus:border-white py-3 text-lg"
-//               />
-//             </div>
-//             <div>
-//               <input
-//                 type="text"
-//                 placeholder="Subject"
-//                 className="w-full bg-black text-white placeholder-gray-400 border-b border-gray-600 focus:outline-none focus:border-white py-3 text-lg"
-//               />
-//             </div>
-//             <div>
-//               <textarea
-//                 rows={5}
-//                 placeholder="Message"
-//                 className="w-full bg-black text-white placeholder-gray-400 border-b border-gray-600 focus:outline-none focus:border-white py-3 text-lg resize-none"
-//               />
-//             </div>
-//             <div>
-//               <button
-//                 type="submit"
-//                 className="bg-white w-full text-black font-bold text-lg sm:text-xl tracking-widest px-6 py-3 hover:bg-gray-200 transition-colors duration-300"
-//               >
-//                 SUBMIT
-//               </button>
-//             </div>
-//           </form>
-
-//           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-//             <div className="text-white text-center">
-//               <ImLocation2 size={44} className="mx-auto mb-4 " />
-//               <h4 className="text-gray-500 font-bold tracking-widest mb-2">WHERE TO FIND ME</h4>
-//               <p>
-//                 Ahmedabad Gujarat <br />
-//                 India
-//               </p>
-//             </div>
-//             <div className="text-white text-center">
-//               <MdEmail size={44} className="mx-auto mb-4 " />
-//               <h4 className="text-gray-500 font-bold tracking-widest mb-2">EMAIL ME AT</h4>
-//               <p>akashsingh4g4h@gmail.com</p>
-//             </div>
-//             <div className="text-white text-center">
-//               <IoCallSharp size={44} className="mx-auto mb-4 " />
-//               <h4 className="text-gray-500 font-bold tracking-widest mb-2">CALL ME AT</h4>
-//               <p>Phone: (+91 6251577079)</p>
-//             </div>
-//           </div>
-//         </div>
-//       </footer>

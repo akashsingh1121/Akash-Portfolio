@@ -17,6 +17,20 @@ export default function Hero() {
   const project2 = useRef(null);
   const project3 = useRef(null);
   const [marginTop, setMarginTop] = useState(0);
+const [isDesktop, setIsDesktop] = useState(false);
+
+// Check if device is desktop
+  useEffect(() => {
+    console.log(isDesktop)
+    const checkScreenSize = () => {
+      setIsDesktop(window.innerWidth >= 1024) // lg breakpoint (1024px)
+    }
+
+    checkScreenSize()
+    window.addEventListener("resize", checkScreenSize)
+    return () => window.removeEventListener("resize", checkScreenSize)
+  }, [])
+
 
   // Hero animation
   useGSAP(() => {
@@ -148,6 +162,7 @@ export default function Hero() {
 
   // Horizontal scroll
   useEffect(() => {
+     if (!isDesktop ) return
 
     const container = horizontalRef.current;
     if (!container) return;
@@ -244,7 +259,7 @@ poppins-font"
 
       {/* ✅ Horizontal Scroll Section */}
       <div ref={horizontalRef} className="overflow-hidden bg-neutral-900" id="projects">
-        <div className="flex w-max h-[100vh]">
+        <div className="flex max-md:flex-col md:w-max md:h-[100vh]">
 
 
           <div className="w-[100vw] panel flex flex-col-reverse xl:flex-row items-center text-white text-4xl bg-white md:p-8">
@@ -302,3 +317,4 @@ poppins-font"
     </div>
   );
 }
+

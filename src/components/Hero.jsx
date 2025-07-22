@@ -257,8 +257,8 @@ export default function Hero() {
           </p>
           <div className="xl:flex justify-between w-full text-white p-2 mona-sans-font mt-6 ">
             <div className="flex gap-6">
-              <a href="https://github.com/akashsingh1121"><p className="hover:text-lime-500 transition cursor-pointer">GITHUB</p></a>
-              <a href="https://www.linkedin.com/in/akashparihar0/"><p className="hover:text-lime-500 transition cursor-pointer">LINKEDIN</p></a>
+              <a href="https://github.com/akashsingh1121" target="_blank" rel="noopener noreferrer"><p className="hover:text-lime-500 transition cursor-pointer">GITHUB</p></a>
+              <a href="https://www.linkedin.com/in/akashparihar0/" target="_blank" rel="noopener noreferrer"><p className="hover:text-lime-500 transition cursor-pointer">LINKEDIN</p></a>
             </div>
             <p>DESIGNED BY CLARISSE MICHARD</p>
           </div>
@@ -303,7 +303,7 @@ export default function Hero() {
           </div>
 
           <div className="w-[100vw] md:w-screen panel flex flex-col-reverse xl:flex-row items-center text-white text-4xl bg-grey md:p-8">
-            <div className="max-md:h-[48%] max-md:w-[70%] max-xl:h-[55%] max-xl:w-[60%] xl:w-[30%] border-2 border-gray-500 xl:mx-28 max-xl:m-auto p-4" ref={project2}>
+            <div className="max-md:h-[48%] max-md:w-[70%] max-xl:h-[55%] max-xl:w-[60%] xl:w-[30%] border-2 border-gray-500 xl:mx-28 max-xl:m-auto p-4 max-md:z-10" ref={project2}>
               <img src="ramen.png" alt="" className="h-[100%] w-[100%] xl:w-[55vh] xl:h-[80vh] m-auto" />
             </div>
             <div className="w-auto h-auto text-white xl:w-[50%] pro1-details max-xl:w-[80%] max-md:w-[90%] max-md:my-4">
@@ -319,7 +319,7 @@ export default function Hero() {
           </div>
 
           <div className="w-[100vw] md:w-screen panel flex flex-col-reverse xl:flex-row items-center text-white text-4xl bg-white md:p-8">
-            <div className="max-md:h-[48%] max-md:w-[70%] max-xl:h-[55%] max-xl:w-[60%] xl:w-[30%] border-2 border-gray-500 xl:mx-28 max-xl:m-auto p-4" ref={project3}>
+            <div className="max-md:h-[48%] max-md:w-[70%] max-xl:h-[55%] max-xl:w-[60%] xl:w-[30%] border-2 border-gray-500 xl:mx-28 max-xl:m-auto p-4 max-md:z-10" ref={project3}>
               <img src="viewzen.png" alt="" className="h-[100%] w-[100%] xl:w-[55vh] xl:h-[80vh] m-auto" />
             </div>
             <div className="w-auto h-auto text-black xl:w-[50%] pro1-details max-xl:w-[80%] max-md:w-[90%] max-md:my-4">

@@ -17,11 +17,10 @@ export default function Hero() {
   const project2 = useRef(null);
   const project3 = useRef(null);
   const [marginTop, setMarginTop] = useState(0);
-const [isDesktop, setIsDesktop] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
 
-// Check if device is desktop
+  // Check if device is desktop
   useEffect(() => {
-    console.log(isDesktop)
     const checkScreenSize = () => {
       setIsDesktop(window.innerWidth >= 1024) // lg breakpoint (1024px)
     }
@@ -30,7 +29,6 @@ const [isDesktop, setIsDesktop] = useState(false);
     window.addEventListener("resize", checkScreenSize)
     return () => window.removeEventListener("resize", checkScreenSize)
   }, [])
-
 
   // Hero animation
   useGSAP(() => {
@@ -109,7 +107,6 @@ const [isDesktop, setIsDesktop] = useState(false);
       repeat: -1,
     });
 
-
     gsap.to(project1.current, {
       y: 40,
       x: -40,
@@ -120,7 +117,6 @@ const [isDesktop, setIsDesktop] = useState(false);
       yoyo: true,
       repeat: -1,
     });
-
 
     gsap.to(project2.current, {
       y: 40,
@@ -156,13 +152,11 @@ const [isDesktop, setIsDesktop] = useState(false);
         markers: false,
       },
     });
-
-
   }, []);
 
-  // Horizontal scroll
+  // Fixed Horizontal scroll effect
   useEffect(() => {
-     if (!isDesktop ) return
+    if (!isDesktop) return;
 
     const container = horizontalRef.current;
     if (!container) return;
@@ -170,30 +164,53 @@ const [isDesktop, setIsDesktop] = useState(false);
     const panels = container.querySelectorAll(".panel");
     if (!panels.length) return;
 
-    // Kill only horizontal scroll triggers, not all triggers
+    // Clean up previous ScrollTrigger instances for this container
     ScrollTrigger.getAll().forEach(trigger => {
       if (trigger.trigger === container) {
         trigger.kill();
       }
     });
 
-    gsap.to(panels, {
-      xPercent: -100 * (panels.length - 1),
-      ease: "none",
-      scrollTrigger: {
-        trigger: container,
-        pin: true,
-        scrub: 1,
-        start: "top top",
-        end: () => "+=" + container.offsetWidth,
-        invalidateOnRefresh: true,
-      },
+    // Wait for next frame to ensure DOM is ready
+    requestAnimationFrame(() => {
+      const totalWidth = panels.length * window.innerWidth;
+      
+      const horizontalTween = gsap.to(panels, {
+        xPercent: -100 * (panels.length - 1),
+        ease: "none",
+        scrollTrigger: {
+          trigger: container,
+          pin: true,
+          scrub: 1,
+          start: "top top",
+          end: `+=${totalWidth - window.innerWidth}`,
+          invalidateOnRefresh: true,
+          anticipatePin: 1,
+          refreshPriority: -1,
+          onUpdate: self => {
+            // Optional: Add debug logging
+            console.log("Scroll progress:", self.progress);
+          }
+        },
+      });
+
+      // Refresh ScrollTrigger after setup
+      ScrollTrigger.refresh();
     });
-  }, []);
+
+    // Cleanup function
+    return () => {
+      ScrollTrigger.getAll().forEach(trigger => {
+        if (trigger.trigger === container) {
+          trigger.kill();
+        }
+      });
+    };
+  }, [isDesktop]); // Add isDesktop as dependency
 
   useEffect(() => {
     const updateMargin = () => {
-      setMarginTop(window.innerHeight / 4); // 50% of window height
+      setMarginTop(window.innerHeight / 4);
     };
 
     updateMargin();
@@ -202,6 +219,15 @@ const [isDesktop, setIsDesktop] = useState(false);
     return () => window.removeEventListener("resize", updateMargin);
   }, []);
 
+  // Add window resize handler for ScrollTrigger refresh
+  useEffect(() => {
+    const handleResize = () => {
+      ScrollTrigger.refresh();
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <div className="w-full overflow-x-hidden bg-black">
@@ -217,7 +243,8 @@ const [isDesktop, setIsDesktop] = useState(false);
           <a href="#contact">
             <button className="my-4 text-lime-500 text-lg md:text-2xl rounded-[5rem] font-bold border-2 border-lime-950 p-2 md:p-4 mona-sans-font">
               Send me an e-mail
-            </button></a>
+            </button>
+          </a>
         </div>
 
         <div className="max-sm:pt-32 max-md:pt-44 max-lg:pt-[32%] max-xl:pt-[12%] md:text-xl" style={{ marginTop }}>
@@ -243,8 +270,7 @@ const [isDesktop, setIsDesktop] = useState(false);
         <div className="absolute max-md:top-6 xl:top-56 xl:left-10 z-10 p-4">
           <h2
             ref={aboutRef}
-            className="max-md:text-xl text-4xl xl:text-[6rem] w-full font-semibold text-white leading-none pt-8 mona-sans-font poppins-font
-poppins-font"
+            className="max-md:text-xl text-4xl xl:text-[6rem] w-full font-semibold text-white leading-none pt-8 mona-sans-font poppins-font"
           >
             <span className="block"><span className="">Hey!</span> I'm Akash,</span>
             <span className="block xl:ml-40 ml-4">twenty-four years old</span>
@@ -257,12 +283,10 @@ poppins-font"
         </div>
       </div>
 
-      {/* ✅ Horizontal Scroll Section */}
+      {/* ✅ Fixed Horizontal Scroll Section */}
       <div ref={horizontalRef} className="overflow-hidden bg-neutral-900" id="projects">
         <div className="flex max-md:flex-col md:w-max md:h-[100vh]">
-
-
-          <div className="w-[100vw] panel flex flex-col-reverse xl:flex-row items-center text-white text-4xl bg-white md:p-8">
+          <div className="w-[100vw] md:w-screen panel flex flex-col-reverse xl:flex-row items-center text-white text-4xl bg-white md:p-8">
             <div className="max-md:h-[48%] max-md:w-[70%] max-xl:h-[55%] max-xl:w-[60%] xl:w-[30%] border-2 border-gray-500 xl:mx-28 max-xl:m-auto p-4 " ref={project1}>
               <img src="roofpro1 (1).jpg" alt="" className="h-[100%] w-[100%] xl:w-[55vh] xl:h-[80vh] m-auto" />
             </div>
@@ -278,8 +302,7 @@ poppins-font"
             </div>
           </div>
 
-
-          <div className="w-[100vw] panel flex flex-col-reverse xl:flex-row items-center text-white text-4xl bg-grey md:p-8">
+          <div className="w-[100vw] md:w-screen panel flex flex-col-reverse xl:flex-row items-center text-white text-4xl bg-grey md:p-8">
             <div className="max-md:h-[48%] max-md:w-[70%] max-xl:h-[55%] max-xl:w-[60%] xl:w-[30%] border-2 border-gray-500 xl:mx-28 max-xl:m-auto p-4" ref={project2}>
               <img src="ramen.png" alt="" className="h-[100%] w-[100%] xl:w-[55vh] xl:h-[80vh] m-auto" />
             </div>
@@ -295,8 +318,7 @@ poppins-font"
             </div>
           </div>
 
-
-          <div className="w-[100vw] panel flex flex-col-reverse xl:flex-row items-center text-white text-4xl bg-white md:p-8">
+          <div className="w-[100vw] md:w-screen panel flex flex-col-reverse xl:flex-row items-center text-white text-4xl bg-white md:p-8">
             <div className="max-md:h-[48%] max-md:w-[70%] max-xl:h-[55%] max-xl:w-[60%] xl:w-[30%] border-2 border-gray-500 xl:mx-28 max-xl:m-auto p-4" ref={project3}>
               <img src="viewzen.png" alt="" className="h-[100%] w-[100%] xl:w-[55vh] xl:h-[80vh] m-auto" />
             </div>
@@ -307,14 +329,11 @@ poppins-font"
                 ViewZen Jewellery is a premium online jewellery store designed to showcase and sell high-end collections with a luxurious user experience. <br />
                 I developed the frontend using HTML, CSS, and JavaScript, and integrated APIs for dynamic product listing and filtering. <br />
                 Built responsive product listing and detail pages with features like image zoom, metal/stone filters, and smooth UI transitions. <br />
-
               </p>
             </div>
           </div>
         </div>
       </div>
-
     </div>
   );
 }
-

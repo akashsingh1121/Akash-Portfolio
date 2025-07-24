@@ -81,11 +81,11 @@ const ContactForm = () => {
     <footer className="bg-black min-h-screen flex flex-col justify-center px-4 sm:px-6 lg:px-8 py-12" id="contact">
       <div className="max-w-4xl mx-auto w-full">
         <div className="text-center mb-12">
-          <h3 className="text-white font-bold tracking-widest text-xl sm:text-2xl">CONTACT</h3>
-          <h4 className="text-gray-500 font-semibold tracking-widest text-lg sm:text-xl mt-2">
+          <h3 className="text-lime-500 font-bold tracking-widest text-xl sm:text-2xl">CONTACT</h3>
+          <h4 className="text-white font-semibold tracking-widest text-lg sm:text-xl mt-2">
             I'd Love To Hear From You.
           </h4>
-          <p className="text-white text-base sm:text-lg mt-8">Feel free to Contact Me:</p>
+          <p className="text-lime-500 text-base sm:text-lg mt-8">Feel free to Contact Me:</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6 mb-12">
@@ -145,7 +145,7 @@ const ContactForm = () => {
             <button
               type="submit"
               disabled={status.submitting}
-              className={`w-full font-bold text-lg sm:text-xl tracking-widest px-6 py-3 transition-colors duration-300 ${
+              className={`w-full font-bold text-lg sm:text-xl tracking-widest px-6 py-3 transition-colors duration-300 bg-lime-500 ${
                 status.submitting
                   ? "bg-gray-400 text-gray-700 cursor-not-allowed"
                   : status.submitted
@@ -161,7 +161,7 @@ const ContactForm = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="text-white text-center">
             <ImLocation2 size={44} className="mx-auto mb-4" />
-            <h4 className="text-gray-500 font-bold tracking-widest mb-2">WHERE TO FIND ME</h4>
+            <h4 className="text-lime-500 font-bold tracking-widest mb-2">WHERE TO FIND ME</h4>
             <p>
               Ahmedabad Gujarat <br />
               India
@@ -169,12 +169,12 @@ const ContactForm = () => {
           </div>
           <div className="text-white text-center">
             <MdEmail size={44} className="mx-auto mb-4" />
-            <h4 className="text-gray-500 font-bold tracking-widest mb-2">EMAIL ME AT</h4>
+            <h4 className="text-lime-500 font-bold tracking-widest mb-2">EMAIL ME AT</h4>
             <p>akashsingh4g4h@gmail.com</p>
           </div>
           <div className="text-white text-center">
             <IoCallSharp size={44} className="mx-auto mb-4" />
-            <h4 className="text-gray-500 font-bold tracking-widest mb-2">CALL ME AT</h4>
+            <h4 className="text-lime-500 font-bold tracking-widest mb-2">CALL ME AT</h4>
             <p>Phone: (+91 6251577079)</p>
           </div>
         </div>

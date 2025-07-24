@@ -3,9 +3,8 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 import { useGSAP } from "@gsap/react";
-import { ImLocation2 } from "react-icons/im";
-import { MdEmail } from "react-icons/md";
-import { IoCallSharp } from "react-icons/io5";
+import ProjectCard from "../Card/ProjectCard";
+import Skills from "./Skills";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
@@ -13,16 +12,49 @@ export default function Hero() {
   const horizontalRef = useRef(null);
   const aboutRef = useRef(null);
   const imageRef = useRef(null);
-  const project1 = useRef(null);
-  const project2 = useRef(null);
-  const project3 = useRef(null);
   const [marginTop, setMarginTop] = useState(0);
   const [isDesktop, setIsDesktop] = useState(false);
+
+  // Projects data
+  const projects = [
+    {
+      title: "RoofPros Plus",
+      image: "roofpro1 (1).jpg",
+      description: [
+        "RoofPros Plus is a professional roofing service website designed for showcasing projects and handling customer inquiries.",
+        "I built the entire frontend and backend from scratch using HTML, CSS, JavaScript, and PHP.",
+        "Implemented a custom admin panel to manage gallery images and contact submissions.",
+        "Focused on responsive design, SEO-friendly code, and optimized performance across all devices."
+      ]
+    },
+    {
+      title: "Ramen Kuraku",
+      image: "ramen.png",
+      description: [
+        "Ramen Kuraku is a modern restaurant website designed to showcase authentic Japanese cuisine and attract dine-in customers.",
+        "I worked as a frontend developer, building responsive pages using HTML, CSS, and JavaScript.",
+        "Focused on creating a clean UI, engaging food presentation, and smooth navigation across devices.",
+        "Implemented layout optimizations to enhance user experience and site performance."
+      ]
+    },
+    {
+      title: "ViewZen Jewellery",
+      image: "viewzen.png",
+      description: [
+        "ViewZen Jewellery is a premium online jewellery store designed to showcase and sell high-end collections with a luxurious user experience.",
+        "I developed the frontend using HTML, CSS, and JavaScript, and integrated APIs for dynamic product listing and filtering.",
+        "Built responsive product listing and detail pages with features like image zoom, metal/stone filters, and smooth UI transitions."
+      ]
+    }
+  ];
+
+  // Background colors for alternating panels
+  const panelBackgrounds = ["bg-white", "bg-grey", "bg-white"];
 
   // Check if device is desktop
   useEffect(() => {
     const checkScreenSize = () => {
-      setIsDesktop(window.innerWidth >= 1024) // lg breakpoint (1024px)
+      setIsDesktop(window.innerWidth >= 1024)
     }
 
     checkScreenSize()
@@ -47,6 +79,8 @@ export default function Hero() {
         delay: 0.5 + Math.abs(i - center) * 0.05,
       });
     });
+
+    
 
     const splitWater = new SplitText(".water-text", { type: "chars, lines" });
     gsap.from(splitWater.lines, {
@@ -80,9 +114,8 @@ export default function Hero() {
 
     // Fixed about section animation
     const splitabout = new SplitText(aboutRef.current, { type: "lines, chars" });
-
     gsap.from(splitabout.lines, {
-      x: (i) => (i % 2 === 0 ? -250 : 250), // even lines from left, odd from right
+      x: (i) => (i % 2 === 0 ? -250 : 250),
       y: 200,
       opacity: 0,
       duration: 2,
@@ -106,52 +139,7 @@ export default function Hero() {
       yoyo: true,
       repeat: -1,
     });
-
-    gsap.to(project1.current, {
-      y: 40,
-      x: -40,
-      rotation: 1,
-      duration: 3,
-      delay: 3,
-      ease: "power2.inOut",
-      yoyo: true,
-      repeat: -1,
-    });
-
-    gsap.to(project2.current, {
-      y: 40,
-      x: 40,
-      rotation: 1,
-      duration: 3,
-      ease: "power2.inOut",
-      yoyo: true,
-      repeat: -1,
-    });
-
-    gsap.to(project3.current, {
-      y: 40,
-      x: -40,
-      rotation: 1,
-      duration: 3,
-      ease: "power2.inOut",
-      yoyo: true,
-      repeat: -1,
-    });
-
-    const splitproject1 = new SplitText(".pro1-details", { type: "chars, lines" });
-    gsap.from(splitproject1.lines, {
-      y: 50,
-      duration: 1,
-      opacity: 0,
-      ease: "back",
-      stagger: { each: 0.2 },
-      scrollTrigger: {
-        trigger: ".pro1-details",
-        start: "top 70%",
-        end: "bottom 30%",
-        markers: false,
-      },
-    });
+   
   }, []);
 
   // Fixed Horizontal scroll effect
@@ -174,7 +162,7 @@ export default function Hero() {
     // Wait for next frame to ensure DOM is ready
     requestAnimationFrame(() => {
       const totalWidth = panels.length * window.innerWidth;
-      
+
       const horizontalTween = gsap.to(panels, {
         xPercent: -100 * (panels.length - 1),
         ease: "none",
@@ -188,17 +176,14 @@ export default function Hero() {
           anticipatePin: 1,
           refreshPriority: -1,
           onUpdate: self => {
-            // Optional: Add debug logging
             console.log("Scroll progress:", self.progress);
           }
         },
       });
 
-      // Refresh ScrollTrigger after setup
       ScrollTrigger.refresh();
     });
 
-    // Cleanup function
     return () => {
       ScrollTrigger.getAll().forEach(trigger => {
         if (trigger.trigger === container) {
@@ -206,7 +191,7 @@ export default function Hero() {
         }
       });
     };
-  }, [isDesktop]); // Add isDesktop as dependency
+  }, [isDesktop]);
 
   useEffect(() => {
     const updateMargin = () => {
@@ -215,11 +200,9 @@ export default function Hero() {
 
     updateMargin();
     window.addEventListener("resize", updateMargin);
-
     return () => window.removeEventListener("resize", updateMargin);
   }, []);
 
-  // Add window resize handler for ScrollTrigger refresh
   useEffect(() => {
     const handleResize = () => {
       ScrollTrigger.refresh();
@@ -231,7 +214,7 @@ export default function Hero() {
 
   return (
     <div className="w-full overflow-x-hidden bg-black">
-      {/* ✅ Hero Section */}
+      {/* Hero Section */}
       <div className="flex flex-col justify-center py-6 px-4 md:py-4">
         <div className="leading-none w-full">
           <h1 className="xl:text-[12rem] max-md:text-[2.8rem] md:text-[6rem] font-semibold text-white text-left mona-sans-font name hover:text-lime-500 transition">
@@ -265,73 +248,39 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* ✅ About section with proper spacing */}
+      {/* About section */}
       <div className="xl:h-[106vh] relative flex justify-between py-8" id="about">
         <div className="absolute max-md:top-6 xl:top-56 xl:left-10 z-10 p-4">
-          <h2
+          
+          <h3
             ref={aboutRef}
-            className="max-md:text-xl text-4xl xl:text-[6rem] w-full font-semibold text-white leading-none pt-8 mona-sans-font poppins-font"
+            className="max-md:text-xl text-4xl xl:text-[6rem] w-full font-semibold text-white  pt-8 mona-sans-font tracking-wide leading-none"
           >
-            <span className="block"><span className="">Hey!</span> I'm Akash,</span>
+            <span className="block"><span className="poppins-font">Hey!</span> I'm Akash,</span>
             <span className="block xl:ml-40 ml-4">twenty-four years old</span>
             <span className="block ml-4">front-end developer. Currently</span>
             <span className="block xl:ml-40 ml-4 ">based in India.</span>
-          </h2>
+          </h3>
         </div>
         <div className="h-full xl:w-[40%] max-md:w-[85%] xl:ml-auto max-xl:m-auto max-xl:w-[80%] max-xl:p-8">
           <img src="/akash.jpeg" ref={imageRef} alt="" />
         </div>
       </div>
 
-      {/* ✅ Fixed Horizontal Scroll Section */}
+      {/* SKILLS */}
+     <Skills/>
+
+      {/* Projects Section with ProjectCard Component */}
       <div ref={horizontalRef} className="overflow-hidden bg-neutral-900" id="projects">
         <div className="flex max-md:flex-col md:w-max md:h-[100vh]">
-          <div className="w-[100vw] md:w-screen panel flex flex-col-reverse xl:flex-row items-center text-white text-4xl bg-white md:p-8">
-            <div className="max-md:h-[48%] max-md:w-[70%] max-xl:h-[55%] max-xl:w-[60%] xl:w-[30%] border-2 border-gray-500 xl:mx-28 max-xl:m-auto p-4 " ref={project1}>
-              <img src="roofpro1 (1).jpg" alt="" className="h-[100%] w-[100%] xl:w-[55vh] xl:h-[80vh] m-auto" />
-            </div>
-            <div className="w-auto h-auto text-black xl:w-[50%] pro1-details max-xl:w-[80%] max-md:w-[90%] max-md:my-4">
-              <h3 className="font-bold max-md:text-[1.8rem] mona-sans-font md:m-4 ">RoofPros Plus</h3>
-              <h3 className="text-gray-500 max-md:text-[1.5rem] font-bold md:m-4 mona-sans-font underline">Description:</h3>
-              <p className="mona-sans-font md:ml-4 xl:text-2xl max-md:text-[18px] max-lg:text-xl max-xl:text-3xl max-md:leading-[25px] mx-auto">
-                RoofPros Plus is a professional roofing service website designed for showcasing projects and handling customer inquiries. <br />
-                I built the entire frontend and backend from scratch using HTML, CSS, JavaScript, and PHP. <br />
-                Implemented a custom admin panel to manage gallery images and contact submissions. <br />
-                Focused on responsive design, SEO-friendly code, and optimized performance across all devices. <br />
-              </p>
-            </div>
-          </div>
-
-          <div className="w-[100vw] md:w-screen panel flex flex-col-reverse xl:flex-row items-center text-white text-4xl bg-grey md:p-8">
-            <div className="max-md:h-[48%] max-md:w-[70%] max-xl:h-[55%] max-xl:w-[60%] xl:w-[30%] border-2 border-gray-500 xl:mx-28 max-xl:m-auto p-4 max-md:z-10" ref={project2}>
-              <img src="ramen.png" alt="" className="h-[100%] w-[100%] xl:w-[55vh] xl:h-[80vh] m-auto" />
-            </div>
-            <div className="w-auto h-auto text-white xl:w-[50%] pro1-details max-xl:w-[80%] max-md:w-[90%] max-md:my-4">
-              <h3 className="font-bold max-md:text-[1.8rem] mona-sans-font md:m-4 ">Ramen Kuraku</h3>
-              <h3 className="text-gray-500 max-md:text-[1.5rem] font-bold md:m-4 mona-sans-font underline">Description:</h3>
-              <p className="mona-sans-font md:ml-4 xl:text-2xl max-md:text-[18px] max-lg:text-xl max-xl:text-3xl max-md:leading-[25px] mx-auto">
-                Ramen Kuraku is a modern restaurant website designed to showcase authentic Japanese cuisine and attract dine-in customers. <br />
-                I worked as a frontend developer, building responsive pages using HTML, CSS, and JavaScript. <br />
-                Focused on creating a clean UI, engaging food presentation, and smooth navigation across devices. <br />
-                Implemented layout optimizations to enhance user experience and site performance.
-              </p>
-            </div>
-          </div>
-
-          <div className="w-[100vw] md:w-screen panel flex flex-col-reverse xl:flex-row items-center text-white text-4xl bg-white md:p-8">
-            <div className="max-md:h-[48%] max-md:w-[70%] max-xl:h-[55%] max-xl:w-[60%] xl:w-[30%] border-2 border-gray-500 xl:mx-28 max-xl:m-auto p-4 max-md:z-10" ref={project3}>
-              <img src="viewzen.png" alt="" className="h-[100%] w-[100%] xl:w-[55vh] xl:h-[80vh] m-auto" />
-            </div>
-            <div className="w-auto h-auto text-black xl:w-[50%] pro1-details max-xl:w-[80%] max-md:w-[90%] max-md:my-4">
-              <h3 className="font-bold max-md:text-[1.8rem] mona-sans-font md:m-4 ">ViewZen Jewellery</h3>
-              <h3 className="text-gray-500 max-md:text-[1.5rem] font-bold md:m-4 mona-sans-font underline">Description:</h3>
-              <p className="mona-sans-font md:ml-4 xl:text-2xl max-md:text-[18px] max-lg:text-xl max-xl:text-3xl max-md:leading-[25px] mx-auto">
-                ViewZen Jewellery is a premium online jewellery store designed to showcase and sell high-end collections with a luxurious user experience. <br />
-                I developed the frontend using HTML, CSS, and JavaScript, and integrated APIs for dynamic product listing and filtering. <br />
-                Built responsive product listing and detail pages with features like image zoom, metal/stone filters, and smooth UI transitions. <br />
-              </p>
-            </div>
-          </div>
+          {projects.map((project, index) => (
+            <ProjectCard 
+              key={index}
+              project={project}
+              index={index}
+              bgColor={panelBackgrounds[index]}
+            />
+          ))}
         </div>
       </div>
     </div>

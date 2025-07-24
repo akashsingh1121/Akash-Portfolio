@@ -2,6 +2,7 @@ import { useGSAP } from "@gsap/react"
 import gsap from "gsap"
 import { useState } from "react";
 import { CgClose,CgMenu  } from "react-icons/cg";
+import HoverButton from "../Card/HoverButton";
 
 
 const Navbar = () => {
@@ -21,19 +22,22 @@ const Navbar = () => {
       {/* Desktop Menu */}
       <div className="hidden xl:flex justify-between items-center w-[20%]">
         <a href="#projects">
-          <h3 className="hover:text-lime-500 transition-colors duration-300 cursor-pointer">
+          {/* <h3 className="hover:text-lime-500 transition-colors duration-300 cursor-pointer">
             PROJECTS
-          </h3>
+          </h3> */}
+          <HoverButton label={"PROJECTS"}/>
         </a>
         <a href="#about">
-          <h3 className="hover:text-lime-500 transition-colors duration-300 cursor-pointer">
+          {/* <h3 className="hover:text-lime-500 transition-colors duration-300 cursor-pointer">
             ABOUT
-          </h3>
+          </h3> */}
+          <HoverButton label={"ABOUT"}/>
         </a>
         <a href="#contact">
-          <h3 className="hover:text-lime-500 transition-colors duration-300 cursor-pointer">
+          {/* <h3 className="hover:text-lime-500 transition-colors duration-300 cursor-pointer">
             CONTACT
-          </h3>
+          </h3> */}
+          <HoverButton label={"CONTACT"}/>
         </a>
       </div>
 

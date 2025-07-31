@@ -13,25 +13,32 @@ const Navbar = () => {
   };
 
   return (
-    <div className="flex justify-between items-center w-full text-white h-[8vh] border-b border-white mona-sans-font p-6 relative fixed z-10">
+    <div className="flex justify-between items-center w-full text-white h-[8vh] border-b border-white mona-sans-font p-6 relative max-md:sticky top-0 z-20">
       {/* Logo */}
       <p className="mona-sans-font logo hover:text-lime-500 transition-colors duration-300 cursor-pointer">
         akashsingh.
       </p>
 
       {/* Desktop Menu */}
-      <div className="hidden xl:flex justify-between items-center w-[20%]">
-        <a href="#projects">
-          {/* <h3 className="hover:text-lime-500 transition-colors duration-300 cursor-pointer">
-            PROJECTS
-          </h3> */}
-          <HoverButton label={"PROJECTS"}/>
-        </a>
+      <div className="hidden xl:flex justify-between items-center w-[25%]">
+       
         <a href="#about">
           {/* <h3 className="hover:text-lime-500 transition-colors duration-300 cursor-pointer">
             ABOUT
           </h3> */}
           <HoverButton label={"ABOUT"}/>
+        </a>
+         <a href="#skills">
+          {/* <h3 className="hover:text-lime-500 transition-colors duration-300 cursor-pointer">
+            PROJECTS
+          </h3> */}
+          <HoverButton label={"SKILLS"}/>
+        </a> 
+        <a href="#projects">
+          {/* <h3 className="hover:text-lime-500 transition-colors duration-300 cursor-pointer">
+            PROJECTS
+          </h3> */}
+          <HoverButton label={"PROJECTS"}/>
         </a>
         <a href="#contact">
           {/* <h3 className="hover:text-lime-500 transition-colors duration-300 cursor-pointer">
@@ -61,19 +68,27 @@ const Navbar = () => {
       }`}>
         <div className={`flex flex-col ${!isMenuOpen ? 'hidden': 'block'}`}>
           
-          <a 
-            href="#projects" 
-            className="hover:text-lime-500 transition-colors duration-300 text-lg py-4 px-6 border-b border-white block"
-            onClick={toggleMenu}
-          >
-            PROJECTS
-          </a>
+          
           <a 
             href="#about" 
             className="hover:text-lime-500 transition-colors duration-300 text-lg py-4 px-6 border-b border-white block"
             onClick={toggleMenu}
           >
             ABOUT
+          </a>
+          <a 
+            href="#skills" 
+            className="hover:text-lime-500 transition-colors duration-300 text-lg py-4 px-6 border-b border-white block"
+            onClick={toggleMenu}
+          >
+            SKILLS
+          </a>
+          <a 
+            href="#projects" 
+            className="hover:text-lime-500 transition-colors duration-300 text-lg py-4 px-6 border-b border-white block"
+            onClick={toggleMenu}
+          >
+            PROJECTS
           </a>
           <a 
             href="#contact" 

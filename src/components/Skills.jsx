@@ -115,16 +115,16 @@ const Skills = () => {
     });
 
     return (
-        <div className="xl:m-12">
+        <div className="xl:m-12" id='skills'>
             <div className="xl:p-8 p-4">
                 {/* Headline */}
                 <h2 ref={skillRef} className="text-4xl sm:text-3xl md:text-4xl
           lg:text-9xl xl:text-[10rem] font-bold text-white mona-sans-font
-          leading-none p-2">
+          leading-none p-2 cursor-pointer">
                     <span>SKILLS &</span>
                     <span className="ml-8 lg:ml-56 text-lime-500">EXPERTISE</span>
                 </h2>
-                <p className="text-gray-400 text-md md:text-xl md:mt-6 ml-2 mona-sans-font skill-item">
+                <p className="text-gray-400 text-md md:text-xl md:mt-6 ml-2 mona-sans-font skill-item cursor-pointer">
                     TECHNOLOGIES I WORK WITH TO CREATE <br />
                     <span className="text-white">AMAZING DIGITAL EXPERIENCES</span>
                 </p>
@@ -132,7 +132,7 @@ const Skills = () => {
             <div className="flex max-md:flex-col font-bold justify-around md:my-16 max-md:px-8 max-md:pb-8 max-md:gap-4">
                 {skillData.map((cat, i) => (
                     <div className='skills-col' key={i}>
-                        <h3 className={`skills-title text-2xl md:text-3xl xl:text-4xl tracking-widest max-md:mt-8 md:mb-5 text-lime-500`}>
+                        <h3 className={`skills-title text-2xl md:text-3xl xl:text-4xl tracking-widest max-md:mt-8 md:mb-5 text-lime-500 cursor-pointer`}>
                             {cat.category}
                         </h3>
                         {cat.skills.map((skill, idx) => (

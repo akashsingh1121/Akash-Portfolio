@@ -17,19 +17,10 @@ export default function Hero() {
 
   // Projects data
   const projects = [
-    {
-      title: "RoofPros Plus",
-      image: "roofpro1 (1).jpg",
-      description: [
-        "RoofPros Plus is a professional roofing service website designed for showcasing projects and handling customer inquiries.",
-        "I built the entire frontend and backend from scratch using HTML, CSS, JavaScript, and PHP.",
-        "Implemented a custom admin panel to manage gallery images and contact submissions.",
-        "Focused on responsive design, SEO-friendly code, and optimized performance across all devices."
-      ]
-    },
-    {
+     {
       title: "Ramen Kuraku",
       image: "ramen.png",
+       link: "https://ramenkuraku.com/",
       description: [
         "Ramen Kuraku is a modern restaurant website designed to showcase authentic Japanese cuisine and attract dine-in customers.",
         "I worked as a frontend developer, building responsive pages using HTML, CSS, and JavaScript.",
@@ -38,8 +29,20 @@ export default function Hero() {
       ]
     },
     {
+      title: "RoofPros Plus",
+      image: "roofpro1 (1).jpg",
+      link: "https://roofpros.plus/",
+      description: [
+        "RoofPros Plus is a professional roofing service website designed for showcasing projects and handling customer inquiries.",
+        "I built the entire frontend and backend from scratch using HTML, CSS, JavaScript, and PHP.",
+        "Implemented a custom admin panel to manage gallery images and contact submissions.",
+        "Focused on responsive design, SEO-friendly code, and optimized performance across all devices."
+      ]
+    },
+    {
       title: "ViewZen Jewellery",
       image: "viewzen.png",
+       link: "http://viewzen.com/",
       description: [
         "ViewZen Jewellery is a premium online jewellery store designed to showcase and sell high-end collections with a luxurious user experience.",
         "I developed the frontend using HTML, CSS, and JavaScript, and integrated APIs for dynamic product listing and filtering.",
@@ -217,10 +220,10 @@ export default function Hero() {
       {/* Hero Section */}
       <div className="flex flex-col justify-center py-6 px-4 md:py-4">
         <div className="leading-none w-full">
-          <h1 className="xl:text-[12rem] max-md:text-[2.8rem] md:text-[6rem] font-semibold text-white text-left mona-sans-font name hover:text-lime-500 transition">
+          <h1 className="xl:text-[12rem] max-md:text-[2.8rem] md:text-[6rem] font-semibold text-white text-left mona-sans-font name hover:text-lime-500 transition cursor-pointer">
             AkashParihar
           </h1>
-          <p className="text-white xl:text-6xl max-md:text-2xl  md:text-4xl text-left mona-sans-font water-text hover:text-lime-500 transition">
+          <p className="text-white xl:text-6xl max-md:text-2xl  md:text-4xl text-left mona-sans-font water-text hover:text-lime-500 transition cursor-pointer">
             WANT TO DISCUSS <br /> A NEW PROJECT?
           </p>
           <a href="#contact">
@@ -254,7 +257,7 @@ export default function Hero() {
           
           <h3
             ref={aboutRef}
-            className="max-md:text-xl text-4xl xl:text-[6rem] w-full font-semibold text-white  pt-8 mona-sans-font tracking-wide leading-none"
+            className="max-md:text-xl text-4xl xl:text-[6rem] w-full font-semibold text-white  pt-8 mona-sans-font tracking-wide leading-none cursor-pointer"
           >
             <span className="block"><span className="poppins-font">Hey!</span> I'm Akash,</span>
             <span className="block xl:ml-40 ml-4">twenty-four years old</span>
